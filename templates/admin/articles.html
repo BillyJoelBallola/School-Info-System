@@ -1,0 +1,106 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Articles {% endblock %}</title>
+<section class="admin-article-container">
+	<div class="table-header">
+		<h1>Articles</h1>
+		<button class="btn-add">Add</button>
+	</div>
+	<div class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>Article</h3>
+					<button type="button" class="btn-close">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form method="POST" id="article" enctype="multipart/form-data">
+						<div class="form-group">
+							<label for="">Title</label>
+							<input type="text" class="article_title" placeholder="Title" />
+						</div>
+						<div class="flex form-group">
+							<div class="form-group">
+								<label for="">Image</label>
+								<input type="file" class="article_img" />
+							</div>
+							<div class="form-group">
+								<label for="">Date</label>
+								<input type="date" class="article_date" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-group">
+								<label for="">Content</label>
+								<textarea
+									class="article_content"
+									cols="30"
+									rows="10"
+									placeholder="Content"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn save_article_btn" form="article">
+						save
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if article %}
+	<div class="view-bg">
+		<div class="view">
+			<div class="flex view-header">
+				<a href="{{ url_for('articles_admin') }}" class="close-view">&times;</a>
+				<h2>Article</h2>
+			</div>
+			<div class="view-body">
+				<img
+					src="{{ url_for('static', filename='uploads/' + article[3]) }}"
+					alt="article image" />
+				<div class="flex view-content">
+					<div class="flex">
+						<h3>{{ article[1] }}</h3>
+						<span class="view-date">{{ article[4] }}</span>
+					</div>
+					<p class="view-content-p">{{ article[2] }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<div class="table-overflow">
+		<table class="table">
+			<thead>
+				<th>Title</th>
+				<th class="medium-cell">Content</th>
+				<th class="small-cell">Date</th>
+				<th class="small-cell">Actions</th>
+			</thead>
+			{% for article in articles %}
+			<tr>
+				<td>{{ article[1] }}</td>
+				<td class="table-content">{{ article[2] }}</td>
+				<td>{{ article[4] }}</td>
+				<td>
+					<input type="hidden" class="article_id" value="{{ article[0] }}" />
+					<a
+						href="{{ url_for('admin_article_view', article_id=article[0]) }}"
+						class="view_article_btn"
+						>View</a
+					>
+					<!-- <a href="#" class="view_article_btn">View</a> -->
+					|
+					<a href="{{ url_for('articles_admin_edit', article_id=article[0]) }}"
+						>Edit</a
+					>
+					|
+					<a href="javascript:void(0)" class="delete_article_btn red">Delele</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</section>
+{% endblock %}

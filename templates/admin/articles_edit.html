@@ -1,0 +1,69 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Articles {% endblock %}</title>
+<section class="admin-article-container">
+	<div class="table-header">
+		<h1>Articles | Edit</h1>
+	</div>
+	<div class="modal1">
+		<div class="modal-dialog modal-dialog-edit">
+			{% if article %}
+			<div class="modal-content">
+				<div class="modal-body">
+					<form
+						method="POST"
+						id="admin_edit_form"
+						enctype="multipart/form-data">
+						<input type="hidden" class="article_id" value="{{ article[0] }}" />
+						<div class="form-group">
+							<label for="">Title</label>
+							<input
+								type="text"
+								class="article_title"
+								placeholder="Title"
+								value="{{ article[1] }}" />
+						</div>
+						<div class="flex form-group">
+							<input
+								type="hidden"
+								class="article_img_current"
+								value="{{ article[3] }}" />
+							<div class="form-group">
+								<label for="">Image</label>
+								<input type="file" class="article_img" />
+							</div>
+							<div class="form-group">
+								<label for="">Date</label>
+								<input
+									type="date"
+									class="article_date"
+									value="{{ article[4] }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="">Content</label>
+							<textarea
+								class="article_content"
+								cols="30"
+								rows="8"
+								placeholder="Content">
+{{ article[2] }}</textarea
+							>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="{{ url_for('articles_admin') }}" class="btn"> cancel </a>
+					<!-- edit_article_btn -->
+					<a
+						href="javascript:void(0)"
+						class="btn edit_article_btn"
+						form="admin_edit_form"
+						>save</a
+					>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+{% endblock %}

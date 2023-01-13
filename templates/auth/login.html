@@ -1,0 +1,27 @@
+{% extends 'auth_base.html' %} {% block content %}
+<title>{% block title %} Login {% endblock %}</title>
+<form action="{{ url_for('login') }}" method="POST">
+	<div class="auth-group">
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" class="username" />
+	</div>
+	<div class="auth-group">
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" class="password" />
+	</div>
+	<div class="auth-group">
+		<label for="accType">Account Type</label>
+		<select name="accType" class="accType" id="accType">
+			<option value="">-- choose --</option>
+			<option value="Parent">Parent</option>
+			<option value="Teacher">Teacher</option>
+			<option value="Admin">Admin</option>
+		</select>
+	</div>
+	<button type="submit" name="submit" class="btn login_btn">log in</button>
+	<small class="reg"
+		>Are you parent and don't have an account yet?
+		<a href="{{ url_for('register') }}">Register now</a></small
+	>
+</form>
+{% endblock %}

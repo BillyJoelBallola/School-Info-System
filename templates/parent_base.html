@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style/parent.css') }}" />
+		<link
+			rel="shortcut icon"
+			href="{{ url_for('static', filename='assets/school-logo.png') }}"
+			type="image/x-icon" />
+
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script defer src="{{url_for('static', filename='js/parent.js')}}"></script>
+		<script defer src="{{url_for('static', filename='js/main.js')}}"></script>
+		<script defer src="{{url_for('static', filename='js/navbar.js')}}"></script>
+
+		<title>{% block title %} {% endblock %} | Mabuhay Elementary</title>
+	</head>
+	<body>
+		<nav class="nav-parent">
+			<div class="nav-school">
+				<h5>Mabuhay Elementary School</h5>
+			</div>
+			<div class="container nav-parent-container">
+				<ul class="nav-parent-links">
+					<li><a href="{{ url_for('home_parent') }}">home</a></li>
+					<li><a href="{{ url_for('about_parent') }}">about</a></li>
+					<li><a href="{{ url_for('events_parent') }}">events</a></li>
+					<li><a href="{{ url_for('articles_parent') }}">articles</a></li>
+					<li>
+						<a href="{{ url_for('announcements_parent') }}">annoucements</a>
+					</li>
+					<li><a href="{{ url_for('faculty_parent') }}">faculty</a></li>
+					<li>
+						<a href="{{ url_for('account_username_parent') }}">Account</a>
+					</li>
+					<li><a href="{{ url_for('logout_parent') }}">Logout</a></li>
+				</ul>
+			</div>
+			<button class="menu-btn parent-open-btn">
+				<img
+					src="{{url_for('static', filename='assets/menu.png')}}"
+					alt="menu" />
+			</button>
+			<button class="close-btn parent-close-btn">
+				<img
+					src="{{url_for('static', filename='assets/close.png')}}"
+					alt="menu" />
+			</button>
+		</nav>
+
+		<header class="home-parent-container">
+			<div class="home-parent-banner">
+				<div class="home-parent-content">
+					<img src="../../static/assets/school-logo.png" alt="logo" />
+					<h1>Mabuhay Elementary Schhool</h1>
+				</div>
+			</div>
+		</header>
+
+		<main>{% block content %} {% endblock %}</main>
+
+		<footer>
+			<div class="container footer-content">
+				<small>©️ All Rights Reserved, 2022</small>
+				<small>Mabuhay Elementary School</small>
+			</div>
+		</footer>
+	</body>
+</html>

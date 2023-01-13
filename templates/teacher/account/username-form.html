@@ -1,0 +1,39 @@
+{% extends 'teacher_base.html' %} {% block content %}
+<title>{% block title %} Account {% endblock %}</title>
+<section class="container account-container">
+	<div class="account-content">
+		<h1 class="section-title">MANAGE ACCOUNT</h1>
+		<div class="account-content-main">
+			<div class="account-controls">
+				<button class="control change-username active-button">
+					Change Username
+				</button>
+				<button
+					onclick="window.location.href='/teacher/account/password'"
+					class="control change-password">
+					Change Password
+				</button>
+			</div>
+			<div class="account-form">
+				<form action="" class="username-form">
+					<div class="flex form-group-account">
+						<label for="username">Username</label>
+						<input type="text" id="username" value="{{ teacher_username }}" />
+					</div>
+					<div class="flex form-group-account">
+						<label for="password">Password</label>
+						<input type="password" id="password" />
+					</div>
+					<small
+						>Once you successfully change your username, the web application
+						will force to logout and you need to re-login.</small
+					>
+					<button type="submit" class="btn save_username_teacher">
+						Submit
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

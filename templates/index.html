@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style/main.css') }}" />
+
+		<link
+			rel="shortcut icon"
+			href="../static/assets/school-logo.png"
+			type="image/x-icon" />
+
+		<title>Mabuhay Elementary School</title>
+	</head>
+	<body>
+		<div class="index-container">
+			<div>
+				<h1>MABUHAY ELEMENTARY SCHOOL INFORMATION SYSTEM</h1>
+				<div class="flex">
+					<a href="{{ url_for('login') }}" class="btn">Login</a>
+					<a href="{{ url_for('register') }}" class="btn">Register</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

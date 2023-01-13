@@ -1,0 +1,55 @@
+{% extends 'parent_base.html' %} {% block content %}
+<title>{% block title %} Home {% endblock %}</title>
+<section class="container home-parent-announcement">
+	<h1 class="section-title">ANNOUCEMENTS</h1>
+	<div class="home-parent-announcement-content">
+		<img
+			src="{{ url_for('static', filename='assets/room.jpg') }}"
+			alt="announcement image" />
+		<div class="home-parent-announcement-text">
+			{% if announcements != None %} {% for announcement in announcements %}
+			<h3>{{ announcement[1] }}</h3>
+			<p class="announcement-p">{{ announcement[3] }}</p>
+			<a href="{{ url_for('announcements_parent') }}" class="btn-link"
+				>Read more</a
+			>
+			{% endfor %} {% else %}
+			<h3>No announcement</h3>
+			{% endif %}
+		</div>
+	</div>
+</section>
+<section class="container home-parent-event-article-container">
+	<div class="home-parent-event-container">
+		<h1 class="event-title">EVENTS AND PROGRAMS</h1>
+		{% if events != None %} {% for event in events %}
+		<div class="home-parent-event-img-container">
+			<img src="../../static/uploads/{{ event[5] }}" alt="school event image" />
+		</div>
+		<div class="home-parent-event-content">
+			<div class="home-parent-event-content-header">
+				<a href="{{ url_for('events_parent') }}" class="title-link">
+					<h3>{{ event[1] }}</h3>
+				</a>
+				<div class="event-date">{{ event[3] }}</div>
+			</div>
+			<p class="event-content">{{ event[2] }}</p>
+		</div>
+		{% endfor %} {% endif %}
+	</div>
+	<div class="home-parent-article-container">
+		<h1 class="section-title">ARTICLES</h1>
+		{% if articles != None%} {% for article in articles %}
+		<article class="home-parent-article-content">
+			<div class="home-parent-article-content-header">
+				<img src="../../static/uploads/{{article[3]}}" alt="article image" />
+				<a href="{{ url_for('articles_parent') }}" class="title-link">
+					<h4>{{ article[1] }}</h4>
+				</a>
+			</div>
+			<p class="article-content">{{ article[2] }}</p>
+		</article>
+		{% endfor %} {% endif %}
+	</div>
+</section>
+{% endblock %}

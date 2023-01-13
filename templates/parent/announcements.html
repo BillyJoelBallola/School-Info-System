@@ -1,0 +1,35 @@
+{% extends 'parent_base.html' %} {% block content %}
+<title>{% block title %} Announcements {% endblock %}</title>
+<section class="container announcement-container">
+	<div class="announcement-content">
+		<h1 class="section-title">ANNOUNCEMENTS</h1>
+		{% if announcements != None %} {% for announcement in announcements %}
+		<div class="announcement-content-main">
+			<h3 class="section-title">{{ announcement[1] }}</h3>
+			<div class="announcement-content-table">
+				<div class="announcement-content-text">
+					<span>Audience</span>
+					<p>{{ announcement[2] }}</p>
+				</div>
+				<div class="announcement-content-text">
+					<span>Purpose</span>
+					<p>{{ announcement[3] }}</p>
+				</div>
+				<div class="announcement-content-text">
+					<span>Place</span>
+					<p>{{ announcement[4] }}</p>
+				</div>
+				<div class="announcement-content-text">
+					<span>Date</span>
+					<p>{{ announcement[5] }}</p>
+				</div>
+			</div>
+		</div>
+		{% endfor %} {% else %}
+		<div class="announcement-content-main">
+			<h3 class="section-title">No Announcement</h3>
+		</div>
+		{% endif %}
+	</div>
+</section>
+{% endblock %}

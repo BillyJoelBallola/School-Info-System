@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style/auth.css') }}" />
+		<link
+			rel="shortcut icon"
+			href="../static/assets/school-logo.png"
+			type="image/x-icon" />
+
+		<script defer src="{{url_for('static', filename='js/auth.js')}}"></script>
+		<script defer src="{{url_for('static', filename='js/main.js')}}"></script>
+
+		<title>{% block title %} {% endblock %}</title>
+	</head>
+	<body>
+		{% for msg in get_flashed_messages() %}
+		<div class="alert show">
+			<p class="alert-message">{{ msg }}</p>
+			<div class="alert-close">&times;</div>
+		</div>
+		{% endfor %}
+
+		<div class="auth-contianer">
+			<div class="auth-content">
+				<div class="auth-image">
+					<img src="../static/assets/auth-bg.png" alt="school" />
+					<h1>MABUHAY ELEMENTARY SCHOOL INFORMATION SYSTEM</h1>
+				</div>
+				<div class="auth-form">{% block content %} {% endblock %}</div>
+			</div>
+		</div>
+	</body>
+</html>

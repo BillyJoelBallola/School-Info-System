@@ -1,0 +1,35 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Students {% endblock %}</title>
+<section class="admin-students-container">
+	<div class="table-header">
+		<div class="flex control-header">
+			<a href="{{ url_for('students_grade_four') }}"
+				><span class="material-symbols-outlined"> keyboard_backspace </span></a
+			>
+			<h1>Grade 4 | Archives</h1>
+		</div>
+	</div>
+	<table class="table">
+		<thead>
+			<th class="small-cell">Name</th>
+			<th class="smaller-cell">Section</th>
+			<th class="smaller-cell">Age</th>
+			<th class="small-cell">LRN</th>
+			<th class="small-cell">Address</th>
+			<th class="small-cell">Status</th>
+		</thead>
+		{% if grade_four != None %} {% for student in grade_four %}
+		<tr>
+			<td>{{ student[1] + " " + student[2] }}</td>
+			<td>{{ student[8] }}</td>
+			<td>{{ student[5] }}</td>
+			<td>{{ student[6] }}</td>
+			<td>{{ student[9] }}</td>
+			{% if student[10] == 2 %}
+			<td>Archive</td>
+			{% endif %}
+		</tr>
+		{% endfor %} {% endif %}
+	</table>
+</section>
+{% endblock %}

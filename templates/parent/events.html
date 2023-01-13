@@ -1,0 +1,22 @@
+{% extends 'parent_base.html' %} {% block content %}
+<title>{% block title %} Events {% endblock %}</title>
+<section class="container event-container">
+	<div class="event-content-page">
+		<h1 class="section-title">EVENTS AND PROGRAMS</h1>
+		{% if events != None %}{% for event in events %}
+		<div class="event-content-main">
+			<div class="event-content-img">
+				<img src="../../static/uploads/{{ event[5] }}" alt="school event" />
+			</div>
+			<div class="event-content-text">
+				<div class="event-content-text-header">
+					<h2 class="section-title">{{ event[1] }}</h2>
+					<div class="event-date">{{ event[3] }}</div>
+				</div>
+				<p>{{ event[2] }}</p>
+			</div>
+		</div>
+		{% endfor %} {% endif %}
+	</div>
+</section>
+{% endblock %}

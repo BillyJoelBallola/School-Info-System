@@ -1,0 +1,58 @@
+{% extends 'auth_base.html' %} {% block content %}
+<title>{% block title %} Register {% endblock %}</title>
+<form action="{{ url_for('register') }}" method="POST">
+	<div class="flex auth-flex">
+		<div class="auth-group">
+			<label for="childName"
+				>Child's name (Firstname, Surname, Middlename)</label
+			>
+			<input type="text" id="childName" name="childName" class="childName" />
+		</div>
+	</div>
+	<div class="line"></div>
+	<div class="flex auth-flex">
+		<div class="auth-group">
+			<label for="parentFirstName">First name</label>
+			<input
+				type="text"
+				id="parentFirstName"
+				name="parentFirstName"
+				class="parentFirstName" />
+		</div>
+		<div class="auth-group">
+			<label for="parentLastName">Last name</label>
+			<input
+				type="text"
+				id="parentLastName"
+				name="parentLastName"
+				class="parentLastName" />
+		</div>
+	</div>
+	<div class="auth-group">
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" class="username" />
+	</div>
+	<div class="flex auth-flex">
+		<div class="auth-group">
+			<label for="createPassword">Password</label>
+			<input
+				type="password"
+				id="createPassword"
+				name="createPassword"
+				class="createPassword" />
+		</div>
+		<div class="auth-group">
+			<label for="confirmPassword">Confirm Password</label>
+			<input
+				type="password"
+				id="confirmPassword"
+				name="confirmPassword"
+				class="confirmPassword" />
+		</div>
+	</div>
+	<button type="submit" name="submit" class="btn register_btn">Register</button>
+	<small class="reg"
+		>Have account already? <a href="{{ url_for('login') }}">Login now</a></small
+	>
+</form>
+{% endblock %}

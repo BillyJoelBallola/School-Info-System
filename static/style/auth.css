@@ -1,0 +1,139 @@
+@import url('./main.css');
+
+.auth-contianer{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.auth-content{
+    height: 70%;
+    width: 60%;
+    background: var(--color-white);
+    box-shadow: var(--shadow);
+    border-radius: var(--border-round);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.auth-image{
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--border-round) 0 0 var(--border-round);
+}
+
+.auth-image::after{
+    position: absolute;
+    content: '';
+    inset: 0;
+    background: var(--color-accent-varient);
+    border-radius: var(--border-round) 0 0 var(--border-round);
+    z-index: 1;
+    opacity: .5;
+}
+
+.auth-image img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.auth-image h1{
+    color: var(--color-white);
+    text-align: right;
+    position: absolute;
+    font-size: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+    z-index: 2;
+}
+
+.auth-form{
+    display: grid;
+    place-items: center;
+}
+
+.auth-form form{
+    width: 100%;
+    padding-inline: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.auth-form form .auth-group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.auth-form form .auth-group label{
+    font-size: .9rem;
+}
+
+.auth-form form .auth-group input,
+.auth-form form .auth-group select{
+    width: 100%;
+    border-radius: var(--border-round);
+    border: 1px solid var(--color-black);
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+
+.reg{
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+@media (max-width: 64em){
+    .auth-contianer{
+        background-image: url('../assets/auth-bg.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .auth-contianer::after{
+        position: absolute;
+        content: '';
+        inset: 0;
+        background: var(--color-accent-varient);
+        opacity: .5;
+    }
+
+    .auth-content{
+        z-index: 1;
+        width: 80%;
+        grid-template-columns: 1fr;
+    }
+
+    .auth-image{
+        display: none;
+    }
+}
+
+@media (max-width: 32em){
+    .auth-content{
+        height: max-content;
+        width: 90%;
+        grid-template-columns: 1fr;
+        padding-block: 2rem;
+    }
+    
+    .auth-flex{
+        flex-direction: column;
+    }
+
+    .reg{
+        margin-top: .5rem;
+        text-align: center;
+    }
+}
+
+.line{
+    width: 100%;
+    background: var(--color-gray);
+    height: .2px;
+    margin-block: .5rem;
+}

@@ -1,0 +1,22 @@
+{% extends 'parent_base.html' %} {% block content %}
+<title>{% block title %} Article {% endblock %}</title>
+<section class="container article-container">
+	<div class="article-content-page">
+		<h1 class="section-title">ARTICLES</h1>
+		{% if articles != None %}{% for article in articles %}
+		<div class="article-content-main">
+			<div class="article-content-img">
+				<img src="../../static/uploads/{{ article[3] }}" alt="school article" />
+			</div>
+			<div class="article-content-text">
+				<div class="article-content-text-header">
+					<h2 class="section-title">{{ article[1] }}</h2>
+					<div class="event-date">{{ article[4] }}</div>
+				</div>
+				<p>{{ article[2] }}</p>
+			</div>
+		</div>
+		{% endfor %} {% endif %}
+	</div>
+</section>
+{% endblock %}

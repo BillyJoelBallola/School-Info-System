@@ -1,0 +1,160 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Announcements {% endblock %}</title>
+<section class="admin-announcements-container">
+	<div class="table-header">
+		<h1>Announcements</h1>
+		<div class="flex control-header">
+			<a
+				href="{{ url_for('announcements_archives_admin') }}"
+				class="btn-archives"
+				>Archives</a
+			>
+			<button class="btn-add">Add</button>
+		</div>
+	</div>
+	<div class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>Announcement</h3>
+					<button type="button" class="btn-close">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form method="POST" id="announcement" enctype="multipart/form-data">
+						<div class="form-group">
+							<div class="form-group">
+								<label for="">Title</label>
+								<input
+									type="text"
+									class="announcement_title"
+									placeholder="Title" />
+							</div>
+						</div>
+						<div class="flex form-group">
+							<div class="form-group">
+								<label for="">Place</label>
+								<input
+									type="text"
+									class="announcement_place"
+									placeholder="place" />
+							</div>
+							<div class="form-group">
+								<label for="">Audience</label>
+								<select class="announcement_audience">
+									<option value="">-- choose --</option>
+									<option value="Grade-one">Grade 1</option>
+									<option value="Grade-two">Grade 2</option>
+									<option value="Grade-three">Grade 3</option>
+									<option value="Grade-four">Grade 4</option>
+									<option value="Grade-five">Grade 5</option>
+									<option value="Grade-six">Grade 6</option>
+									<option value="All grade">All grade</option>
+									<option value="Parents">Parents</option>
+									<option value="Teachers">Teachers</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="">Date</label>
+								<input type="date" class="announcement_date" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-group">
+								<label for="">Content</label>
+								<textarea
+									class="announcement_purpose"
+									cols="30"
+									rows="10"
+									placeholder="Purpose"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button
+						type="submit"
+						class="btn save_announcement_btn"
+						form="announcement">
+						save
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if announcement %}
+	<div class="view-bg">
+		<div class="view">
+			<div class="flex view-header">
+				<a href="{{ url_for('announcements_admin') }}" class="close-view"
+					>&times;</a
+				>
+				<h2>Announcement</h2>
+			</div>
+			<div class="view-body">
+				<div class="flex view-content">
+					<div class="view-text">
+						<div class="grid">
+							<div>
+								<h4>Title</h4>
+								<p>{{ announcement[1] }}</p>
+							</div>
+							<div>
+								<h4>Audience</h4>
+								<p>{{ announcement[2] }}</p>
+							</div>
+						</div>
+						<div class="grid">
+							<div>
+								<h4>Place</h4>
+								<p>{{ announcement[4] }}</p>
+							</div>
+							<div>
+								<h4>Date</h4>
+								<p>{{ announcement[5] }}</p>
+							</div>
+						</div>
+						<div>
+							<h4>Purpose</h4>
+							<p class="view-content-p">{{ announcement[3] }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<table class="table">
+		<thead>
+			<th class="small-cell">Title</th>
+			<th class="medium-cell">Purpose</th>
+			<th>Audience</th>
+			<th>Date</th>
+			<th>Place</th>
+			<th>Actions</th>
+		</thead>
+		{% if announcements != None%} {% for announcement in announcements %}
+		<tr>
+			<td>{{ announcement[1] }}</td>
+			<td class="table-content">{{ announcement[3] }}</td>
+			<td>{{ announcement[2] }}</td>
+			<td>{{ announcement[5] }}</td>
+			<td>{{ announcement[4] }}</td>
+			<td>
+				<input
+					type="hidden"
+					class="announcement_id"
+					value="{{ announcement[0] }}" />
+				<a
+					href="{{ url_for('admin_announcement_view', announcement_id=announcement[0]) }}"
+					>View</a
+				>
+				|
+				<a href="javascript:void(0)" class="archive_announcement_btn red"
+					>Archive</a
+				>
+			</td>
+		</tr>
+		{% endfor %} {% endif %}
+	</table>
+</section>
+{% endblock %}

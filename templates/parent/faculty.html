@@ -1,0 +1,18 @@
+{% extends 'parent_base.html' %} {% block content %}
+<title>{% block title %} Faculty {% endblock %}</title>
+<div class="container parent-faculty-container">
+	<div class="parent-main-card-container">
+		{% if data %} {% for data in data %}
+		<div class="parent-card-container flex">
+			<img
+				src="{{ url_for('static', filename='assets/teacher.png') }}"
+				alt="" />
+			<div class="parent-card-info">
+				<span>{{ data[0] }}</span>
+				<div class="event-date job-title">{{ data[1] }}</div>
+			</div>
+		</div>
+		{% endfor %} {% endif %}
+	</div>
+</div>
+{% endblock %}

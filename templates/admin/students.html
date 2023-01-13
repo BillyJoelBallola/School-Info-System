@@ -1,0 +1,290 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Students {% endblock %}</title>
+<section class="admin-students-container">
+	<div class="table-header">
+		<h1>Student Information</h1>
+		<div class="flex control-header">
+			<button class="btn-add">Add</button>
+			<button class="student_edit_lrn_btn">Edit</button>
+		</div>
+	</div>
+	<div class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>Student | Add</h3>
+					<button type="button" class="btn-close">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form method="POST" id="student" enctype="multipart/form-data">
+						<div class="form-group flex">
+							<div class="form-group">
+								<label for="">First name</label>
+								<input
+									type="text"
+									class="student_fname"
+									placeholder="First name" />
+							</div>
+							<div class="form-group">
+								<label for="">Last name</label>
+								<input
+									type="text"
+									class="student_lname"
+									placeholder="Last name" />
+							</div>
+							<div class="form-group">
+								<label for="">Middle name</label>
+								<input
+									type="text"
+									class="student_mname"
+									placeholder="Middle name" />
+							</div>
+						</div>
+						<div class="form-group flex">
+							<div class="form-group">
+								<label for="">Date of Birth</label>
+								<input
+									type="date"
+									class="student_dob"
+									placeholder="Date of Birth" />
+							</div>
+							<div class="form-group">
+								<label for="">Age</label>
+								<input type="number" class="student_age" placeholder="Age" />
+							</div>
+							<div class="form-group">
+								<label for="">Learner Reference Number</label>
+								<input type="text" class="student_lrn" placeholder="LRN" />
+							</div>
+						</div>
+						<div class="form-group flex">
+							<div class="form-group">
+								<label for="">Grade Level</label>
+								<select class="student_grade">
+									<option value="">-- choose --</option>
+									<option value="1">Grade 1</option>
+									<option value="2">Grade 2</option>
+									<option value="3">Grade 3</option>
+									<option value="4">Grade 4</option>
+									<option value="5">Grade 5</option>
+									<option value="6">Grade 6</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="">Section</label>
+								<select class="student_section">
+									<option value="">-- choose --</option>
+									<option value="A">A</option>
+									<option value="B">B</option>
+									<option value="C">C</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group flex">
+							<input
+								type="text"
+								class="student_address"
+								placeholder="Address" />
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn save_student_btn" form="student">
+						save
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- edit info -->
+	{% if student_info %}
+	<div class="modal show">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>Student | Edit</h3>
+					<a href="{{ url_for('students_admin') }}" class="btn-close"
+						>&times;</a
+					>
+				</div>
+				<div class="modal-body">
+					<form method="POST" id="student" enctype="multipart/form-data">
+						<div class="form-group flex">
+							<input
+								type="hidden"
+								class="student_id_edit"
+								value="{{ student_info[0] }}" />
+							<div class="form-group">
+								<label for="">First name</label>
+								<input
+									type="text"
+									class="student_fname_edit"
+									placeholder="First name"
+									value="{{ student_info[1] }}" />
+							</div>
+							<div class="form-group">
+								<label for="">Last name</label>
+								<input
+									type="text"
+									class="student_lname_edit"
+									placeholder="Last name"
+									value="{{ student_info[2] }}" />
+							</div>
+							<div class="form-group">
+								<label for="">Middle name</label>
+								<input
+									type="text"
+									class="student_mname_edit"
+									placeholder="Middle name"
+									value="{{ student_info[3] }}" />
+							</div>
+						</div>
+						<div class="form-group flex">
+							<div class="form-group">
+								<label for="">Date of Birth</label>
+								<input
+									type="date"
+									class="student_dob_edit"
+									placeholder="Date of Birth"
+									value="{{ student_info[4] }}" />
+							</div>
+							<div class="form-group">
+								<label for="">Age</label>
+								<input
+									type="number"
+									class="student_age_edit"
+									placeholder="Age"
+									value="{{ student_info[5] }}" />
+							</div>
+							<div class="form-group">
+								<label for="">Learner Reference Number</label>
+								<input
+									type="text"
+									class="student_lrn_edit"
+									placeholder="LRN"
+									value="{{ student_info[6] }}" />
+							</div>
+						</div>
+						<div class="form-group flex">
+							<div class="form-group">
+								<label for="">Grade Level</label>
+								<input
+									type="hidden"
+									class="grade_value"
+									value="{{ student_info[7] }}" />
+								<select class="student_grade_edit">
+									<option value="">-- choose --</option>
+									<option class="grade_option" value="1">Grade 1</option>
+									<option class="grade_option" value="2">Grade 2</option>
+									<option class="grade_option" value="3">Grade 3</option>
+									<option class="grade_option" value="4">Grade 4</option>
+
+									<option class="grade_option" value="5">Grade 5</option>
+									<option class="grade_option" value="6">Grade 6</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="">Section</label>
+								<input
+									type="hidden"
+									class="section_value"
+									value="{{ student_info[8] }}" />
+								<select class="student_section_edit">
+									<option value="">-- choose --</option>
+									<option class="section_option" value="A">A</option>
+									<option class="section_option" value="B">B</option>
+									<option class="section_option" value="C">C</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group flex">
+							<input
+								type="text"
+								class="student_address_edit"
+								placeholder="Address"
+								value="{{ student_info[9] }}" />
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button
+						type="submit"
+						class="btn save_student_edit_btn"
+						form="student">
+						save
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<div class="grade-card-container">
+		<div class="grade-card">
+			<div>
+				<h2>Grade 1</h2>
+				<a href="{{ url_for('students_grade_one') }}">View list</a>
+			</div>
+			<div class="line"></div>
+			<small>
+				Students: {{ students_num[0][0] }}<br />
+				Archives: {{ archives_num[0][0] }}
+			</small>
+		</div>
+		<div class="grade-card">
+			<div>
+				<h2>Grade 2</h2>
+				<a href="{{ url_for('students_grade_two') }}">View list</a>
+			</div>
+			<div class="line"></div>
+			<small>
+				Students: {{ students_num[1][0] }}<br />
+				Archives: {{ archives_num[1][0] }}
+			</small>
+		</div>
+		<div class="grade-card">
+			<div>
+				<h2>Grade 3</h2>
+				<a href="{{ url_for('students_grade_three') }}">View list</a>
+			</div>
+			<div class="line"></div>
+			<small>
+				Students: {{ students_num[2][0] }}<br />
+				Archives: {{ archives_num[2][0] }}
+			</small>
+		</div>
+		<div class="grade-card">
+			<div>
+				<h2>Grade 4</h2>
+				<a href="{{ url_for('students_grade_four') }}">View list</a>
+			</div>
+			<div class="line"></div>
+			<small>
+				Students: {{ students_num[3][0] }}<br />
+				Archives: {{ archives_num[3][0] }}
+			</small>
+		</div>
+		<div class="grade-card">
+			<div>
+				<h2>Grade 5</h2>
+				<a href="{{ url_for('students_grade_five') }}">View list</a>
+			</div>
+			<div class="line"></div>
+			<small>
+				Students: {{ students_num[4][0] }}<br />
+				Archives: {{ archives_num[4][0] }}
+			</small>
+		</div>
+		<div class="grade-card">
+			<div>
+				<h2>Grade 6</h2>
+				<a href="{{ url_for('students_grade_six') }}">View list</a>
+			</div>
+			<div class="line"></div>
+			<small>
+				Students: {{ students_num[5][0] }}<br />
+				Archives: {{ archives_num[5][0] }}
+			</small>
+		</div>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style/teacher.css') }}" />
+		<link
+			rel="shortcut icon"
+			href="{{url_for('static', filename='assets/school-logo.png')}}"
+			type="image/x-icon" />
+
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script defer src="{{url_for('static', filename='js/modal.js')}}"></script>
+		<script defer src="{{url_for('static', filename='js/navbar.js')}}"></script>
+		<script defer src="{{url_for('static', filename='js/main.js')}}"></script>
+		<script
+			defer
+			src="{{url_for('static', filename='js/teacher.js')}}"></script>
+
+		<title>{% block title %} {% endblock %} | Mabuhay Elementary</title>
+	</head>
+	<body>
+		<nav class="nav-teacher">
+			<div class="nav-school">
+				<h5>Mabuhay Elementary School</h5>
+			</div>
+			<div class="container nav-teacher-container">
+				<ul class="nav-teacher-links">
+					<li><a href="{{ url_for('home_teacher') }}">home</a></li>
+					<li><a href="{{ url_for('events_teacher') }}">events</a></li>
+					<li><a href="{{ url_for('articles_teacher') }}">articles</a></li>
+					<li>
+						<a href="{{ url_for('announcements_teacher') }}">annoucements</a>
+					</li>
+					<li>
+						<a href="{{ url_for('account_username_teacher') }}">account</a>
+					</li>
+					<li><a href="{{ url_for('logout_teacher') }}">Logout</a></li>
+				</ul>
+			</div>
+			<button class="menu-btn teacher-open-btn">
+				<img
+					src="{{url_for('static', filename='assets/menu.png')}}"
+					alt="menu" />
+			</button>
+			<button class="close-btn teacher-close-btn">
+				<img
+					src="{{url_for('static', filename='assets/close.png')}}"
+					alt="menu" />
+			</button>
+		</nav>
+
+		<header class="home-teacher-container">
+			<div class="home-teacher-banner">
+				<div class="home-teacher-content">
+					<img
+						src="{{url_for('static', filename='assets/school-logo.png')}}"
+						alt="logo" />
+					<h1>Mabuhay Elementary School</h1>
+				</div>
+			</div>
+		</header>
+
+		<main>{% block content %} {% endblock %}</main>
+
+		<footer>
+			<div class="container footer-content">
+				<small>©️ All Rights Reserved, 2022</small>
+				<small>Mabuhay Elementary School</small>
+			</div>
+		</footer>
+	</body>
+	<!-- <script>
+		const nav = document.querySelector(".nav-teacher-links");
+		const openBtn = document.querySelector(".menu-btn");
+		const closeBtn = document.querySelector(".close-btn");
+
+		openBtn.addEventListener("click", () => {
+			nav.style.display = "flex";
+			openBtn.style.display = "none";
+			closeBtn.style.display = "block";
+		});
+
+		closeBtn.addEventListener("click", () => {
+			nav.style.display = "none";
+			openBtn.style.display = "block";
+			closeBtn.style.display = "none";
+		});
+	</script> -->
+</html>

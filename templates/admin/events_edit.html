@@ -1,0 +1,68 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Events {% endblock %}</title>
+<section class="admin-event-container">
+	<div class="table-header">
+		<h1>Event | Edit</h1>
+	</div>
+	<div class="modal1">
+		<div class="modal-dialog modal-dialog-edit">
+			{% if event %}
+			<div class="modal-content">
+				<div class="modal-body">
+					<form
+						method="POST"
+						id="admin_edit_form"
+						enctype="multipart/form-data">
+						<input type="hidden" class="event_id" value="{{ event[0] }}" />
+						<div class="form-group">
+							<label for="">Title</label>
+							<input
+								type="text"
+								class="event_title"
+								placeholder="Title"
+								value="{{ event[1] }}" />
+						</div>
+						<div class="flex form-group">
+							<input
+								type="hidden"
+								class="event_img_current"
+								value="{{ event[5] }}" />
+							<div class="form-group">
+								<label for="">Image</label>
+								<input type="file" class="event_img" />
+							</div>
+							<div class="form-group">
+								<label for="">Date</label>
+								<input type="date" class="event_date" value="{{ event[3] }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-group">
+								<label for="">Content</label>
+								<textarea
+									class="event_content"
+									cols="30"
+									rows="8"
+									placeholder="Content">
+{{ event[2] }}</textarea
+								>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="{{ url_for('events_admin') }}" class="btn"> cancel </a>
+					<!-- edit_event_btn -->
+					<a
+						href="javascript:void(0)"
+						class="btn edit_event_btn"
+						form="admin_edit_form"
+						>save</a
+					>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+{% endblock %}

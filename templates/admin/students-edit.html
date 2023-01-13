@@ -1,0 +1,6 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Students {% endblock %}</title>
+<section class="admin-students-container">
+	{% if student_info != None%} {{ student_info }} {% endif %}
+</section>
+{% endblock %}

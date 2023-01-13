@@ -1,0 +1,33 @@
+{% extends 'admin_base.html' %} {% block content %}
+<title>{% block title %} Faculty {% endblock %}</title>
+<section class="admin-faculty-container">
+	<div class="table-header">
+		<div class="flex">
+			<a href="{{ url_for('faculty_admin') }}"
+				><span class="material-symbols-outlined"> keyboard_backspace </span></a
+			>
+			<h1>Faculty | Archives</h1>
+		</div>
+	</div>
+	<table class="table">
+		<thead>
+			<th class="small-cell">Name</th>
+			<th>Address</th>
+			<th>Date of Birth</th>
+			<th>Contact</th>
+			<th>Email</th>
+			<th>Status</th>
+		</thead>
+		{% if archives != None%} {% for teacher in archives %}
+		<tr>
+			<td>{{ teacher[1] +" "+ teacher[2] }}</td>
+			<td class="table-content">{{ teacher[4] }}</td>
+			<td>{{ teacher[3] }}</td>
+			<td>{{ teacher[6] }}</td>
+			<td>{{ teacher[5] }}</td>
+			<td>Archive</td>
+		</tr>
+		{% endfor %} {% endif %}
+	</table>
+</section>
+{% endblock %}
